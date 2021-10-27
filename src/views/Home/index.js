@@ -24,7 +24,7 @@ const Home = () => (
         style={{margin: -50}}
       />
       <View>
-        <McText>LA ESTACION LATINA UK</McText>
+        <McText color="#ffff">LA ESTACION LATINA UK</McText>
       </View>
     </Header>
     <OutstandingNews>
@@ -33,7 +33,23 @@ const Home = () => (
       />
     </OutstandingNews>
     <Categories>
-      
+      <View>
+        <McText size="18" marginTop="23">
+          Entretenimiento
+        </McText>
+
+        <NewsContainer>
+          <Image
+          /* source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')} */
+          />
+        </NewsContainer>
+      </View>
+      {/* ----------------------------------------------------------- */}
+      <View>
+        <McText size="18" marginTop="23">
+          Internacinal
+        </McText>
+      </View>
     </Categories>
   </View>
 );
@@ -49,13 +65,15 @@ const Header = styled.SafeAreaView`
 `;
 
 const McText = styled.Text`
-  color: #fff;
+  color: ${props => props.color || '#000000'};
   font-family: Alegreya Sans SC;
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: ${props => props.size || 16}px;
   line-height: 32px;
-  margin-left: -20px;
+  margin-left: ${props => props.size || 16}px;
+  font-family: ABeeZee;
+  margin-top: ${props => props.marginTop || 0}px;
 `;
 
 const OutstandingNews = styled.SafeAreaView`
@@ -69,6 +87,13 @@ const Categories = styled.SafeAreaView`
   height: 549px;
   background: #f8f8f8;
   border-radius: 27px;
+`;
+
+const NewsContainer = styled.SafeAreaView`
+  width: 163px;
+  height: 150px;
+  left: 16px;
+  top: 335px;
 `;
 
 const McImage = styled.Image``;
