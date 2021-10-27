@@ -32,18 +32,24 @@ const Home = () => (
         source={require('../../../assets/images/figmaRadio/home/Carrusel.png')}
       />
     </OutstandingNews>
+    {/* -------------------------------------------------###------------------------------------------------- */}
     <Categories>
-      <View>
-        <McText size="18" marginTop="23">
-          Entretenimiento
-        </McText>
-
-        <NewsContainer>
+      <McText size="18" marginTop="23">
+        Entretenimiento
+      </McText>
+      <NewsContainer>
+        <News>
           <Image
-          /* source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')} */
+            source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
           />
-        </NewsContainer>
-      </View>
+        </News>
+
+        <News>
+          <Image
+            source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
+          />
+        </News>
+      </NewsContainer>
       {/* ----------------------------------------------------------- */}
       <View>
         <McText size="18" marginTop="23">
@@ -82,6 +88,8 @@ const OutstandingNews = styled.SafeAreaView`
 `;
 
 const Categories = styled.SafeAreaView`
+  display: flex;
+  flex-direcction: row;
   margin-top: -25px;
   width: 360px;
   height: 549px;
@@ -89,11 +97,18 @@ const Categories = styled.SafeAreaView`
   border-radius: 27px;
 `;
 
-const NewsContainer = styled.SafeAreaView`
+const News = styled.SafeAreaView`
   width: 163px;
   height: 150px;
+  background-color: red;
   left: 16px;
-  top: 335px;
+`;
+
+const NewsContainer = styled.SafeAreaView`
+  display: flex;
+  flex-direction: row;
+  row-gap: 5px;
+  background-color: blue;
 `;
 
 const McImage = styled.Image``;
