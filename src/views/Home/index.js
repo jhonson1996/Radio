@@ -1,69 +1,76 @@
 import React from 'react';
 import {
-  Text,
   View,
   StatusBar,
-  TextInput,
-  TouchableWithoutFeedback,
-  FlatList,
-  ScrollView,
   Image,
 } from 'react-native';
-
-/* import Menu from '../../../assets/images/figmaradio/home/Burguermenu.png'; */
 
 import styled from 'styled-components/native';
 
 const Home = () => (
   <View>
+    <StatusBar barStyle="light-content" />
     <Header>
-      <StatusBar barStyle="light-content" />
-
       <Image
         source={require('../../../assets/images/figmaRadio/home/Burguermenu.png')}
-        style={{margin: -50}}
       />
       <View>
         <McText color="#ffff">LA ESTACION LATINA UK</McText>
       </View>
     </Header>
-    <OutstandingNews>
+    <Carrousel>
       <Image
         source={require('../../../assets/images/figmaRadio/home/Carrusel.png')}
+        style={{ width: '100%' }}
+        resizeMode="stretch"
       />
-    </OutstandingNews>
+    </Carrousel>
     {/* -------------------------------------------------###------------------------------------------------- */}
-    <Categories>
-      <McText size="18" marginTop="23">
+    <NewsContainer>
+      <McText size="20" marginTop="20">
         Entretenimiento
       </McText>
-      <NewsContainer>
-        <News>
+      <NewsRow>
+        <NewsCard>
           <Image
             source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
           />
-        </News>
+        </NewsCard>
 
-        <News>
+        <NewsCard>
           <Image
             source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
           />
-        </News>
-      </NewsContainer>
+        </NewsCard>
+      </NewsRow>
       {/* ----------------------------------------------------------- */}
-      <View>
-        <McText size="18" marginTop="23">
-          Internacinal
-        </McText>
+      <McText size="20" marginTop="20">
+        Internacional
+      </McText>
+      <NewsRow>
+        <NewsCard>
+          <Image
+            source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
+          />
+        </NewsCard>
+
+        <NewsCard>
+          <Image
+            source={require('../../../assets/images/figmaRadio/home/Rectangle 534 (1).png')}
+          />
+        </NewsCard>
+      </NewsRow>
+
+      <View style={{height:200}}>
+        {/* ---player--- */}
       </View>
-    </Categories>
+    </NewsContainer>
   </View>
 );
 
 const Header = styled.SafeAreaView`
   flex: 1;
   background-color: #ff0056;
-  width: 375px;
   height: 47px;
   align-items: center;
   justify-content: space-around;
@@ -82,35 +89,40 @@ const McText = styled.Text`
   margin-top: ${props => props.marginTop || 0}px;
 `;
 
-const OutstandingNews = styled.SafeAreaView`
-  width: 375px;
-  height: 202px;
+const Carrousel = styled.View`
 `;
 
-const Categories = styled.SafeAreaView`
+const NewsContainer = styled.View`
   display: flex;
   flex-direcction: row;
   margin-top: -25px;
-  width: 360px;
-  height: 549px;
   background: #f8f8f8;
-  border-radius: 27px;
+  borderTopLeftRadius: 27px;
+  borderTopRightRadius: 27px;
 `;
 
-const News = styled.SafeAreaView`
-  width: 163px;
-  height: 150px;
-  background-color: red;
-  left: 16px;
-`;
-
-const NewsContainer = styled.SafeAreaView`
+const NewsRow = styled.View`
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
-  row-gap: 5px;
-  background-color: blue;
+  margin-horizontal: 8px;
+  margin-top: 18px;
+  margin-bottom: 8px;
 `;
 
-const McImage = styled.Image``;
+const NewsCard = styled.View`
+  width: 45%
+  height: 150px;
+  background-color: white;
+  border-radius: 25px;
+  shadowColor: "#000";
+  shadowOffset: {
+    width: 0,
+    height: 10,
+  }
+  shadowOpacity: 0.5
+  shadowRadius: 10,
+  elevation: 20
+`;
 
 export default Home;
