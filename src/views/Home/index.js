@@ -3,25 +3,19 @@ import {
   View,
   StatusBar,
   Image,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 
 import styled from 'styled-components/native';
 
-const Home = () => (
-  <View>
+const Home = (navigation) => (
+  <ScrollView>
     <StatusBar
       barStyle="light-content"
       backgroundColor="#ff0056"
     />
-    <Header>
-      <Image
-        source={require('../../../assets/images/figmaRadio/home/Burguermenu.png')}
-      />
-      <View>
-        <McText color="#ffff">LA ESTACION LATINA UK</McText>
-      </View>
-    </Header>
+
     <Carrousel>
       <Image
         source={require('../../../assets/images/figmaRadio/home/Carrusel.png')}
@@ -69,17 +63,9 @@ const Home = () => (
         {/* ---player--- */}
       </View>
     </NewsContainer>
-  </View>
-);
+  </ScrollView>
 
-const Header = styled.SafeAreaView`
-  flex: 1;
-  background-color: #ff0056;
-  height: 47px;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-`;
+);
 
 const McText = styled.Text`
   color: ${props => props.color || '#000000'};
