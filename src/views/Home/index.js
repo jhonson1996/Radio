@@ -3,6 +3,7 @@ import {
   View,
   StatusBar,
   Image,
+  Dimensions
 } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -114,18 +115,11 @@ const NewsRow = styled.View`
 `;
 
 const NewsCard = styled.View`
-  width: 45%
+  width: ${Dimensions.get('window').width/2.35}px;
   height: 150px;
   background-color: white;
   border-radius: 25px;
-  shadowColor: "#000";
-  shadowOffset: {
-    width: 0,
-    height: 10,
-  }
-  shadowOpacity: 0.5
-  shadowRadius: 10,
-  elevation: 20
+  elevation: 20;
 `;
 
 export default Home;
