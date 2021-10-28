@@ -9,7 +9,10 @@ import styled from 'styled-components/native';
 
 const Home = () => (
   <View>
-    <StatusBar barStyle="light-content" />
+    <StatusBar
+      barStyle="light-content"
+      backgroundColor="#ff0056"
+    />
     <Header>
       <Image
         source={require('../../../assets/images/figmaRadio/home/Burguermenu.png')}
