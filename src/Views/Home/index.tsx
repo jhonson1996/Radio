@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import styled from 'styled-components/native';
 import { colors } from '../../Constants';
+import news from '../../news.json';
 
 export const Home = () => (
   <ScrollView>
@@ -26,24 +27,21 @@ export const Home = () => (
     {/* Carrousel */}
 
     <Container>
-
-      <TitleContainer>
-        <CategoryName>Entretenimiento</CategoryName>
-        <SeeMore>{"VER TODO >"}</SeeMore>
-      </TitleContainer>
-      <NewsRow>
-        <NewsCard/>
-        <NewsCard/>
-      </NewsRow>
-
-      <TitleContainer>
-        <CategoryName>Internacional</CategoryName>
-        <SeeMore>{"VER TODO >"}</SeeMore>
-      </TitleContainer>
-      <NewsRow>
-        <NewsCard/>
-        <NewsCard/>
-      </NewsRow>
+    {news.map((category) => (
+      <>
+        <HeaderContainer>
+          <CategoryName>{category.categoryName}</CategoryName>
+          <SeeMore>{"VER TODO >"}</SeeMore>
+        </HeaderContainer>
+        <NewsRow>
+          {category.news.slice(0, 2).map((item) => (
+            <>
+              <NewsCard/>
+            </>
+          ))}
+        </NewsRow>
+      </>
+    ))}
 
       <View style={{height:100}}>
         {/* ---player--- */}
@@ -64,7 +62,7 @@ const Container = styled.View`
 const Carrousel = styled.View`
 `;
 
-const TitleContainer = styled.View`
+const HeaderContainer = styled.View`
   flex-direction: row;
   padding-top: 10px;
   justify-content: space-between;

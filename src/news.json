@@ -1,0 +1,37 @@
+[
+  {
+     "categoryName":"Entretenimiento",
+     "news":[
+        {
+           "title":"Andrés Cepeda se desliga de Residente en polémica por el «hot dog» de J Balvin",
+           "image":"https://i0.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/andres-cepeda-nov-2019-u-billboard-1548-1586180949-compressed.jpg",
+           "content":""
+        },
+        {
+          "title":"Kanye West se reinventa y cambia su nombre, ahora sólo se llama Ye",
+          "image":"https://i2.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/Kanye-West-feb-2020-billboard-1548-1626707904-compressed.jpg",
+          "content":""
+       },
+       {
+         "title":"Kanye West se reinventa y cambia su nombre, ahora sólo se llama Ye",
+         "image":"https://i2.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/Kanye-West-feb-2020-billboard-1548-1626707904-compressed.jpg",
+         "content":""
+      }
+     ]
+  },
+  {
+     "categoryName":"Internacional",
+     "news":[
+        {
+           "title":"Presupuesto 2021: Los aumentos de precios podrían alcanzar la tasa más alta en 30 años, dice el pronosticador",
+           "image":"https://i1.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/121246522_hi067167491-1.jpg",
+           "content":""
+        },
+        {
+          "title":"Barco del Reino Unido detenido por Francia en medio de una disputa por los derechos",
+          "image":"https://i2.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/121246522_hi067167491.jpg",
+          "content":""
+       }
+     ]
+  }
+]
