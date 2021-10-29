@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../Constants';
-import { Home } from '../Views/Home';
+import { HomeScreen } from '../Screens/HomeScreen';
 
 
 const Drawer = createDrawerNavigator();
@@ -15,7 +15,7 @@ export default () => (
   <Drawer.Navigator screenOptions={ScreenOptions}>
     <Drawer.Screen
       name="Home"
-      component={Home}
+      component={HomeScreen}
       options={
         {
           drawerLabel: 'Home',

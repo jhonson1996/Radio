@@ -2,12 +2,12 @@ import React from 'react';
 import { View, StatusBar, Image, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 
-import { colors } from '../../Constants';
-import { NewsCard } from '../../Components'
-import news from '../../news.json';
+import { colors } from '../Constants';
+import { NewsCard } from '../Components'
+import news from '../news.json';
 
 
-export const Home = () => (
+export const HomeScreen = () => (
   <ScrollView>
     <StatusBar
       barStyle="light-content"
@@ -24,18 +24,18 @@ export const Home = () => (
     {/* Carrousel */}
 
     <Container>
-    {news.map((category) => (
-      <>
+    {news.map((category, index) => (
+      <View key={index}>
         <HeaderContainer>
           <CategoryName>{category.categoryName}</CategoryName>
           <SeeMore>{"VER TODO >"}</SeeMore>
         </HeaderContainer>
         <NewsContainer>
-          {category.news.slice(0, 2).map((item) => (
-            <NewsCard item={item}/>
+          {category.news.slice(0, 2).map((item, index) => (
+            <NewsCard key={index} item={item}/>
           ))}
         </NewsContainer>
-      </>
+      </View>
     ))}
 
       <View style={{height:100}}>
