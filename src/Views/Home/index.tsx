@@ -68,20 +68,22 @@ const TitleContainer = styled.View`
   flex-direction: row;
   padding-top: 10px;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-horizontal: 24px;
 `;
 
 const CategoryName = styled.Text`
   color: ${colors.navyblue};
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: ABeeZee-Italic;
 `;
 
 const SeeMore = styled.Text`
   font-size: 13px;
   color: ${colors.gray};
   font-weight: 400;
+  font-family: ABeeZee-Italic;
 `;
 
 const NewsRow = styled.View`

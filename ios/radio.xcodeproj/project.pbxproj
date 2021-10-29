@@ -14,6 +14,8 @@
 		6172F2D35A4C3AA820D92908 /* libPods-radio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-radio.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-radio-radioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-radio-radioTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AE162610423643ADB4FAAFB2 /* ABeeZee-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2815625CC7246B5B59609DE /* ABeeZee-Italic.ttf */; };
+		A9BF99A1DCAB4E01808D8141 /* ABeeZee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F00BA683B574DA69F84594D /* ABeeZee-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		C0A881CF5CF3F2B244570E2A /* Pods-radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-radio.debug.xcconfig"; path = "Target Support Files/Pods-radio/Pods-radio.debug.xcconfig"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-radio.release.xcconfig"; path = "Target Support Files/Pods-radio/Pods-radio.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D2815625CC7246B5B59609DE /* ABeeZee-Italic.ttf */ = {isa = PBXFileReference; name = "ABeeZee-Italic.ttf"; path = "../assets/fonts/ABeeZee-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7F00BA683B574DA69F84594D /* ABeeZee-Regular.ttf */ = {isa = PBXFileReference; name = "ABeeZee-Regular.ttf"; path = "../assets/fonts/ABeeZee-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
+				FD8AFED9D11A4B14888D6742 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -148,6 +153,16 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		FD8AFED9D11A4B14888D6742 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				D2815625CC7246B5B59609DE /* ABeeZee-Italic.ttf */,
+				7F00BA683B574DA69F84594D /* ABeeZee-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +260,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				AE162610423643ADB4FAAFB2 /* ABeeZee-Italic.ttf in Resources */,
+				A9BF99A1DCAB4E01808D8141 /* ABeeZee-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
