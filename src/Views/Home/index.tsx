@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-  View,
-  StatusBar,
-  Image,
-  Dimensions,
-  ScrollView
-} from 'react-native';
+import { View, StatusBar, Image, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+
 import { colors } from '../../Constants';
+import { NewsCard } from '../../Components'
 import news from '../../news.json';
+
 
 export const Home = () => (
   <ScrollView>
@@ -33,13 +30,11 @@ export const Home = () => (
           <CategoryName>{category.categoryName}</CategoryName>
           <SeeMore>{"VER TODO >"}</SeeMore>
         </HeaderContainer>
-        <NewsRow>
+        <NewsContainer>
           {category.news.slice(0, 2).map((item) => (
-            <>
-              <NewsCard/>
-            </>
+            <NewsCard item={item}/>
           ))}
-        </NewsRow>
+        </NewsContainer>
       </>
     ))}
 
@@ -53,18 +48,14 @@ export const Home = () => (
 
 const Container = styled.View`
   margin-top: -25px;
-  padding-top: 10px;
+  padding-top: 25px;
   background: ${colors.background};
   borderTopLeftRadius: 27px;
   borderTopRightRadius: 27px;
 `;
 
-const Carrousel = styled.View`
-`;
-
 const HeaderContainer = styled.View`
   flex-direction: row;
-  padding-top: 10px;
   justify-content: space-between;
   align-items: baseline;
   margin-horizontal: 24px;
@@ -72,7 +63,7 @@ const HeaderContainer = styled.View`
 
 const CategoryName = styled.Text`
   color: ${colors.navyblue};
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 400;
   font-family: ABeeZee-Italic;
 `;
@@ -84,19 +75,10 @@ const SeeMore = styled.Text`
   font-family: ABeeZee-Italic;
 `;
 
-const NewsRow = styled.View`
+const NewsContainer = styled.View`
   justify-content: space-around;
   flex-direction: row;
-  margin-horizontal: 8px;
-  margin-top: 18px;
+  margin-horizontal: 10px;
+  margin-top: 10px;
   margin-bottom: 12px;
-`;
-
-const NewsCard = styled.View`
-  width: ${Dimensions.get('window').width/2.35}px;
-  height: 150px;
-  background-color: white;
-  border-radius: 25px;
-  elevation: 20;
-  margin-bottom: 10px;
 `;
