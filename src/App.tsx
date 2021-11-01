@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { colors } from './Constants';
 import DrawerNavigator from './Navigation/DrawerNavigation';
 import { radioInit } from './TrackPlayer/TrackPlayerSerivce';
-import { HomeStackNavigator } from './Navigation/StackNavigation';
 
 radioInit();
 

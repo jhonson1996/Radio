@@ -10,7 +10,6 @@ import { colors } from "../Constants";
 import { HomeScreen } from "../Screens/HomeScreen";
 import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 import { NewsDetailScreen } from "../Screens/NewsDetailScreen";
-import { RouteProp } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
 

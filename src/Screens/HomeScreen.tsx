@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar, Image, ScrollView, Pressable, Button } from 'react-native';
+import { View, StatusBar, Image, ScrollView, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
@@ -21,17 +21,6 @@ export const HomeScreen = ({ navigation }: {navigation:any}) => {
      }, [])
   );
 
-/*   React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          title="Done"
-          onPress={toggleDrawer}
-        />      
-      ),
-    });
-  }, [navigation]); */
-  
   return(
     <ScrollView>
       <StatusBar animated={true} barStyle="light-content" backgroundColor={colors.fucshia}/>
