@@ -27,8 +27,8 @@ export const radioInit = async () => {
   }
 
   await TrackPlayer.add({
-    url: 'http://91.240.86.151:8070/stream',
+    url: 'http://c32.radioboss.fm/stream/466',
   });
 
-  TrackPlayer.stop();
+  TrackPlayer.play();
 };

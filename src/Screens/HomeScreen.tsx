@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 
 import { colors } from '../Constants';
 import { NewsCard } from '../Components'
-import { Player } from '../Components'
 import news from '../news.json';
 
 
@@ -53,11 +52,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             </NewsContainer>
           </View>
         ))}
-
-        <View style={{ height: 100 }}>
-          <Player/>
-        </View>
-
       </Container>
     </ScrollView>
   )
