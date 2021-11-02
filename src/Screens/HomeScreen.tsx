@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StatusBar, Image, ScrollView, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 import { colors } from '../Constants';
 import { NewsCard } from '../Components'
-import news from '../news.json';
 
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
+
+  const [data, setData] = useState([])
 
   const toggleDrawer = () => {
     navigation.toggleDrawer();
@@ -20,6 +21,31 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
       StatusBar.setBackgroundColor(`${colors.fucshia}`)
     }, [])
   );
+
+  useEffect(() => {
+    fetch('https://laestacionlatinauk.com/wp-json/wp/v2/posts?per_page=20&_embed')
+      .then(res => res.json())
+      .then(res => {
+        setData(res)
+      })
+  }, []);
+
+  const groupBy = (data: any) => {
+    return data.reduce((posts: any, post: any) => {
+      const value = post['_embedded']["wp:term"][0][0]['name'];
+      posts[value] = (posts[value] || []).concat(
+        {
+          'id': post.id,
+          'title': post.title.rendered,
+          'image': post.jetpack_featured_media_url,
+          'content': post.content.rendered,
+        }
+      );
+      return posts;
+    }, {});
+  }
+
+  const news = Object.entries(groupBy(data)).map(([categoryName, news]) => ({ categoryName, news }));
 
   return (
     <ScrollView>
@@ -35,23 +61,30 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
       {/* Carrousel */}
 
       <Container>
-        {news.map((category, index) => (
-          <View key={index}>
-            <HeaderContainer>
-              <CategoryName>{category.categoryName}</CategoryName>
-              <Pressable onPress={() => navigation.navigate('Category', { category })} hitSlop={8}>
-                <SeeMore>{"VER TODO >"}</SeeMore>
-              </Pressable>
-            </HeaderContainer>
-            <NewsContainer>
-              {category.news.slice(0, 2).map((item, index) => (
-                <Pressable key={index} onPress={() => navigation.navigate('Detail', { category: category.categoryName, item })}>
-                  <NewsCard item={item} />
+        {news.map((category: any, index: any) => (
+          (category.news.length > 1) ?
+            <View key={index}>
+              <HeaderContainer>
+                <CategoryName>{category.categoryName}</CategoryName>
+                <Pressable onPress={() => navigation.navigate('Category', { category })} hitSlop={8}>
+                  <SeeMore>{"VER TODO >"}</SeeMore>
                 </Pressable>
-              ))}
-            </NewsContainer>
-          </View>
+              </HeaderContainer>
+              <NewsContainer>
+                {category.news.slice(0, 2).map((item: any, index: any) => (
+                  <Pressable key={index} onPress={() => navigation.navigate('Detail', { category: category.categoryName, item })}>
+                    <NewsCard item={item} />
+                  </Pressable>
+                ))}
+              </NewsContainer>
+            </View>
+            : <></>
         ))}
+
+        <View style={{ height: 100 }}>
+          {/* ---player--- */}
+        </View>
+
       </Container>
     </ScrollView>
   )
