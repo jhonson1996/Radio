@@ -10,13 +10,39 @@ export const NewsDetailScreen = ({navigation, route}: {navigation: any, route: a
   return (
     <ScrollView>
       <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'}/>
+      <ViewContainer>
       <Image source={{uri: item.image}}/>
-      <Text style={{color: colors.navyblue}}>{JSON.stringify(item)}</Text>
+      <TextTitle style={{color: colors.navyblue}}>{item.title}</TextTitle>
+      <TextDetails style={{color: colors.navyblue}}>{item.content}</TextDetails>
+      </ViewContainer>
     </ScrollView>
   );
 }
 
+
 const Image = styled.Image`
   width: 100%;
   height: 200px;
+  margin-bottom: 18px;
 `
+
+const ViewContainer = styled.View`
+  margin: 20px;
+`;
+
+const TextDetails = styled.Text`
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+`;
+
+const TextTitle = styled.Text`
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  font-weight: 700;
+  margin-bottom: 23px;
+`;
+
