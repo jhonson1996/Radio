@@ -1,14 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, StatusBar, Image, ScrollView, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 import { colors } from '../Constants';
 import { NewsCard } from '../Components'
-import news from '../news.json';
+
 
 
 export const HomeScreen = ({ navigation }: {navigation:any}) => {
+
+  
+  const [data, setData] = useState([])
+  let news;
 
   const toggleDrawer = () => {
     navigation.toggleDrawer();
@@ -20,6 +24,51 @@ export const HomeScreen = ({ navigation }: {navigation:any}) => {
        StatusBar.setBackgroundColor(`${colors.fucshia}`)
      }, [])
   );
+
+  fetch('https://laestacionlatinauk.com/wp-json/wp/v2/posts?per_page=10&_embed')
+  .then(res => res.json())
+  .then(res => {
+    setData(res)
+  })
+
+
+  const groupBy = (attribute:any, data:any, row_name:any) => {
+    let posts = [];
+    var p: any[] = [];
+    let post;
+    let groupValue;
+    
+    data.sort((a:any,b:any ) => ( a._embedded["wp:term"][0][0].name <= b._embedded["wp:term"][0][0].name) ? -1 : 1) 
+  
+    for ( var i = 0 ; i < data.length ; i++ ) {
+
+      var object = data[i];
+
+      if ( object._embedded["wp:term"][0][0].name !== groupValue ) {
+
+        post = {
+          [attribute]: object._embedded["wp:term"][0][0].name,
+          [row_name]: []
+        };
+
+        groupValue = post[attribute];
+        posts.push(post);
+
+      }
+
+      post[row_name].push({
+        'id': object.id,
+        'title': object.title.rendered,
+        'image': object.jetpack_featured_media_url
+      })
+
+    }
+    news = posts
+   
+  }
+
+
+  groupBy('categoryName', data, 'news')
 
   return(
     <ScrollView>
@@ -35,7 +84,7 @@ export const HomeScreen = ({ navigation }: {navigation:any}) => {
       {/* Carrousel */}
 
       <Container>
-      {news.map((category, index) => (
+      {news.map((category:any, index:any) => (
         <View key={index}>
           <HeaderContainer>
             <CategoryName>{category.categoryName}</CategoryName>
@@ -44,7 +93,7 @@ export const HomeScreen = ({ navigation }: {navigation:any}) => {
             </Pressable>
           </HeaderContainer>
           <NewsContainer>
-            {category.news.slice(0, 2).map((item, index) => (
+            {category.news.slice(0, 2).map((item:any, index:any) => (
               <Pressable key={index} onPress={() => navigation.navigate('Detail', {category: category.categoryName, item})}>
                 <NewsCard item={item}/>
               </Pressable>
