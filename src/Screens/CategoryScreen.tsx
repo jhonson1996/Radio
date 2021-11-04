@@ -6,19 +6,19 @@ import styled from 'styled-components/native';
 import { NewsCard } from '../Components'
 
 
-export const NewsCategoryScreen = ({navigation, route}: {navigation: any, route: any}) => {
+export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, route: any }) => {
 
   const { category } = route.params
 
   return (
     <ScrollView>
-      <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'}/>
-      
+      <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'} />
       <NewsContainer>
-      {category.news.map((item:any, index:any)=>(
-        <NewsCard item={item} key={index}/>
-      ))}
-      
+        {category.news.map((item: any, index: any) => (
+          <Pressable key={index} onPress={() => navigation.navigate('Detail', { category: category.categoryName, item })}>
+            <NewsCard item={item} />
+          </Pressable>
+        ))}
       </NewsContainer>
     </ScrollView>
 
