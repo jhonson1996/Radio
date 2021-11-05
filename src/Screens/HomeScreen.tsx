@@ -36,6 +36,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
       posts[value] = (posts[value] || []).concat(
         {
           'id': post.id,
+          'categoryId': post.categories[0],
           'title': post.title.rendered,
           'image': post.jetpack_featured_media_url,
           'content': post.content.rendered,
@@ -45,8 +46,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     }, {});
   }
 
-  const news = Object.entries(groupBy(data)).map(([categoryName, news]) => ({ categoryName, news }));
-
+  const news = Object.entries(groupBy(data)).map(([categoryName, news]) => ({ categoryName, 'categoryId': news[0].categoryId, news }));
   return (
     <ScrollView>
       <StatusBar animated={true} barStyle="light-content" backgroundColor={colors.fucshia} />
@@ -66,7 +66,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             <View key={index}>
               <HeaderContainer>
                 <CategoryName>{category.categoryName}</CategoryName>
-                <Pressable onPress={() => navigation.navigate('Category', { category })} hitSlop={8}>
+                <Pressable onPress={() => navigation.navigate('Category', { category: category.categoryName,id:category.categoryId })} hitSlop={8}>
                   <SeeMore>{"VER TODO >"}</SeeMore>
                 </Pressable>
               </HeaderContainer>
