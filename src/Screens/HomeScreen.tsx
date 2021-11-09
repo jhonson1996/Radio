@@ -11,10 +11,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
   const [data, setData] = useState([])
 
-  const toggleDrawer = () => {
-    navigation.toggleDrawer();
-  };
-
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle('light-content');
@@ -66,7 +62,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             <View key={index}>
               <HeaderContainer>
                 <CategoryName>{category.categoryName}</CategoryName>
-                <Pressable onPress={() => navigation.navigate('Category', { category: category.categoryName,id:category.categoryId })} hitSlop={8}>
+                <Pressable onPress={() => navigation.navigate('Category', { category: category.categoryName, id: category.categoryId })} hitSlop={8}>
                   <SeeMore>{"VER TODO >"}</SeeMore>
                 </Pressable>
               </HeaderContainer>
@@ -80,11 +76,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             </View>
             : <></>
         ))}
-
-        <View style={{ height: 100 }}>
-          {/* ---player--- */}
-        </View>
-
       </Container>
     </ScrollView>
   )
