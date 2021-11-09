@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StatusBar, Pressable, FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
-import styled from 'styled-components/native';
+import { StatusBar, Pressable, FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
 import { NewsCard } from '../Components'
 import { colors } from '../Constants';
 
 export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, route: any }) => {
 
   const { id } = route.params
-
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    /* setIsLoading(true) */
     getData()
   }, [page]);
 
@@ -24,7 +21,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       .then(res => {
         setNews([...news, ...res])
         setIsFetching(false)
-        news.length ==0?setIsLoading(true):setIsLoading(false)
+        setIsLoading(news.length == 0 ? true : false)
       })
   }
 
@@ -34,14 +31,15 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       'image': item.jetpack_featured_media_url,
       'title': item.title.rendered,
       'content': item.content.rendered,
+      'categoryName': item['_embedded']["wp:term"][0][0]['name']
     };
   })
 
   const renderItem = ({ item }: any) => {
     return (
-      <Pressable onPress={(item) =>
-        navigation.navigate('Detail', { category: item.categoryName, item })}
-      >
+      <Pressable onPress={() =>
+        navigation.navigate('Detail', { category: item.categoryName, item })
+      }>
         <NewsCard item={item} />
       </Pressable>
     )
@@ -50,6 +48,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
   const onRefresh = () => {
     setIsFetching(true)
     setPage(1)
+    setNews([])
     getData()
   };
 
@@ -63,7 +62,6 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         <View>
           <ActivityIndicator size='large' color={colors.fucshia} />
         </View> : null
-        
     )
   }
 
@@ -89,21 +87,6 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    padding: 10,
   },
 });
-
-const NewsContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-horizontal: 10px;
-  margin-top: 20px;
-  margin-bottom: 12px;
-`;
-
-const Loader = styled.View`
-  margin-top: 10px;
-  align-items: center;
-`;
