@@ -1,17 +1,15 @@
 import React from 'react';
 import colors from "../../Constants/colors";
-import { DrawerItemList } from '@react-navigation/drawer';
 import styled from 'styled-components/native';
 import { View, Image, TouchableOpacity, Dimensions } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const DrawerMenu = (props) => {
-  return(
+const DrawerMenu = (props: any) => {
+  return (
     <TouchableOpacity onPress={props.navigation}>
       <CategoryContainer >
         <View>
-          <AntDesign name={props.iconName} size={30} color='#ffffff' style={{marginLeft: 6,marginRight: 10}}/>
+          <Icon name={props.iconName} size={30} color={colors.gray} style={{ marginLeft: 6, marginRight: 10 }} />
         </View>
         <View>
           <Text >
@@ -25,26 +23,26 @@ const DrawerMenu = (props) => {
 
 
 const Menu = (props: any) => {
-    return (
-        <View>
-            <ViewContainer>
-              <Image source={require('./img/imagen5.png')} />
-              <TextImg>La radio de la buena música</TextImg>
-            </ViewContainer>
-            <View>
-            <DrawerMenu iconName='newspaper-o' titleName='Noticias' navigation={()=> props.navigation.navigate('Home')}/>
-            <DrawerMenu iconName='home' titleName='Emisora' navigation={()=> props.navigation.navigate('Emisora')}/>
-            <DrawerMenu iconName='home' titleName='Sobre Nosotros'/>
-            <DrawerMenu iconName='home' titleName='RadioShow'/>
-            <DrawerMenu iconName='home' titleName='Contacto'/>
-            </View>
-        </View>
-    )
+  return (
+    <View>
+      <ViewContainer>
+        <Image source={require('./img/imagen5.png')} />
+        <TextImg>La radio de la buena música</TextImg>
+      </ViewContainer>
+      <View>
+        <DrawerMenu iconName='rocket' titleName='Noticias' navigation={() => props.navigation.navigate('Home')} />
+        <DrawerMenu iconName='rocket' titleName='Emisora' navigation={() => props.navigation.navigate('Emisora')} />
+        <DrawerMenu iconName='rocket' titleName='Sobre Nosotros' />
+        <DrawerMenu iconName='rocket' titleName='RadioShow' />
+        <DrawerMenu iconName='rocket' titleName='Contacto' />
+      </View>
+    </View>
+  )
 }
 
 const Text = styled.Text`
   font-family: ABeeZee-Regular;
-  color: #ffffff;
+  color: ${colors.gray};
   font-size: 15px;
 `;
 
@@ -55,10 +53,7 @@ const TextImg = styled.Text`
 `;
 
 const CategoryContainer = styled.View`
-  background-color: #012342;
   margin-left: ${Dimensions.get('window').width / 10}px;
-  margin-bottom: ${Dimensions.get('window').width / 15}px;
-  margin-top: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
