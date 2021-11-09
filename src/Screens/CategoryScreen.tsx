@@ -14,7 +14,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    /* setIsLoading(true) */
+
     getData()
   }, [page]);
 
@@ -34,12 +34,13 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       'image': item.jetpack_featured_media_url,
       'title': item.title.rendered,
       'content': item.content.rendered,
+      'categoryName': item['_embedded']["wp:term"][0][0]['name']
     };
   })
 
   const renderItem = ({ item }: any) => {
     return (
-      <Pressable onPress={(item) =>
+      <Pressable onPress={() =>
         navigation.navigate('Detail', { category: item.categoryName, item })}
       >
         <NewsCard item={item} />
@@ -63,7 +64,6 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         <View>
           <ActivityIndicator size='large' color={colors.fucshia} />
         </View> : null
-        
     )
   }
 
@@ -89,7 +89,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    padding: 10,
   },
 });
 
