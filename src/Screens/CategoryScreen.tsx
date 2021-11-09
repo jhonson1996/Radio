@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, Pressable, FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { NewsCard } from '../Components'
-
+import { colors } from '../Constants';
 
 export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, route: any }) => {
 
@@ -14,7 +14,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true)
+    /* setIsLoading(true) */
     getData()
   }, [page]);
 
@@ -22,9 +22,9 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     fetch(`https://laestacionlatinauk.com/wp-json/wp/v2/posts?categories=${id}&_embed&per_page=10&page=${page}`)
       .then(res => res.json())
       .then(res => {
-        setNews(res)
+        setNews([...news, ...res])
         setIsFetching(false)
-        setIsLoading(false)
+        news.length ==0?setIsLoading(true):setIsLoading(false)
       })
   }
 
@@ -34,7 +34,6 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       'image': item.jetpack_featured_media_url,
       'title': item.title.rendered,
       'content': item.content.rendered,
-      'categoryName': item['_embedded']["wp:term"][0][0]['name']
     };
   })
 
@@ -54,6 +53,20 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     getData()
   };
 
+  const fetchMoreNews = () => {
+    setPage(page + 1)
+  }
+
+  const renderFooter = () => {
+    return (
+      !isLoading ?
+        <View>
+          <ActivityIndicator size='large' color={colors.fucshia} />
+        </View> : null
+        
+    )
+  }
+
   return (
     <>
       <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'} />
@@ -66,6 +79,9 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         keyExtractor={(item, index) => index.toString()}
         onRefresh={onRefresh}
         refreshing={isFetching}
+        onEndReachedThreshold={0.5}
+        onEndReached={fetchMoreNews}
+        ListFooterComponent={renderFooter}
       />
     </>
   );
