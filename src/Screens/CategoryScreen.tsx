@@ -69,8 +69,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     <>
       <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'} />
       <FlatList
-        style={styles.container}
-        columnWrapperStyle={{ justifyContent: 'space-between' }}
+        columnWrapperStyle={{ justifyContent: 'space-evenly' }}
         numColumns={2}
         data={News}
         renderItem={renderItem}
@@ -84,9 +83,3 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-});
