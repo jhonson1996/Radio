@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, Pressable, FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
+import { StatusBar, Pressable, FlatList, View, ActivityIndicator } from 'react-native';
 import { NewsCard } from '../Components'
 import { colors } from '../Constants';
 
@@ -16,12 +16,16 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
   }, [page]);
 
   const getData = async () => {
+    setIsLoading(true)
     fetch(`https://laestacionlatinauk.com/wp-json/wp/v2/posts?categories=${id}&_embed&per_page=10&page=${page}`)
       .then(res => res.json())
       .then(res => {
-        setNews([...news, ...res])
+        if (res.length > 0 && res !== undefined) {
+          setNews([...news, ...res])
+        } else {
+          setIsLoading(false)
+        }
         setIsFetching(false)
-        setIsLoading(news.length == 0 ? true : false)
       })
   }
 
@@ -58,7 +62,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
 
   const renderFooter = () => {
     return (
-      !isLoading ?
+      isLoading ?
         <View>
           <ActivityIndicator size='large' color={colors.fucshia} />
         </View> : null
@@ -79,6 +83,8 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         onEndReachedThreshold={0.5}
         onEndReached={fetchMoreNews}
         ListFooterComponent={renderFooter}
+        ItemSeparatorComponent={() => <View style={{ margin: 5 }} />}
+        contentContainerStyle={{ paddingTop: 25 }}
       />
     </>
   );
