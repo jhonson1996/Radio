@@ -2,6 +2,8 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../Constants';
 import { HomeStackNavigator } from './StackNavigation';
+import Menu from '../Components/Menu/Menu';
+import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 
 
 const Drawer = createDrawerNavigator();
@@ -13,13 +15,13 @@ const ScreenOptions = {
 }
 
 export default () => (
-  <Drawer.Navigator screenOptions={ ScreenOptions }>
+  <Drawer.Navigator screenOptions={ScreenOptions} drawerContent={(props) => <Menu {...props} />}>
     <Drawer.Screen
       name="Home"
-      component={ HomeStackNavigator }
+      component={HomeStackNavigator}
       options={
         {
-          drawerLabel: 'Home',
+          drawerLabel: 'Noticias',
           title: 'LA ESTACIÓN LATINA UK',
           headerTitleAlign: 'center',
           headerStyle: {
@@ -31,6 +33,22 @@ export default () => (
           }
         }
       }
+    />
+    <Drawer.Screen
+      name="Emisora"
+      component={HomeStackNavigator}
+    />
+    <Drawer.Screen
+      name="Sobre Nosotros"
+      component={NewsCategoryScreen}
+    />
+    <Drawer.Screen
+      name="RadioShow"
+      component={HomeStackNavigator}
+    />
+    <Drawer.Screen
+      name="Contacto"
+      component={HomeStackNavigator}
     />
   </Drawer.Navigator>
 );
