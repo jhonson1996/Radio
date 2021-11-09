@@ -62,7 +62,7 @@ const HomeStackNavigator = () => {
             name="Category"
             component={NewsCategoryScreen}
             options={(props: any) => ({
-              title: props.route.params.category.categoryName,
+              title: props.route.params.category,
             })}
           />
           <Stack.Screen
