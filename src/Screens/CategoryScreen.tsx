@@ -11,6 +11,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     setIsLoading(true)
@@ -22,6 +23,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       .then(res => res.json())
       .then(res => {
         setNews(res)
+        setIsFetching(false)
         setIsLoading(false)
       })
   }
@@ -46,6 +48,12 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     )
   }
 
+  const onRefresh = () => {
+    setIsFetching(true)
+    setPage(1)
+    getData()
+  };
+
   return (
     <>
       <StatusBar animated={true} barStyle="dark-content" backgroundColor={'white'} />
@@ -56,6 +64,8 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         data={News}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
+        onRefresh={onRefresh}
+        refreshing={isFetching}
       />
     </>
   );
