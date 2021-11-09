@@ -3,6 +3,7 @@ import { ScrollView, StatusBar, Pressable, FlatList, View, ActivityIndicator, St
 import styled from 'styled-components/native';
 import { NewsCard } from '../Components'
 
+import { colors } from '../Constants';
 
 export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, route: any }) => {
 
@@ -22,7 +23,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     fetch(`https://laestacionlatinauk.com/wp-json/wp/v2/posts?categories=${id}&_embed&per_page=10&page=${page}`)
       .then(res => res.json())
       .then(res => {
-        setNews(res)
+        setNews([...news,...res])
         setIsFetching(false)
         setIsLoading(false)
       })
@@ -34,7 +35,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
       'image': item.jetpack_featured_media_url,
       'title': item.title.rendered,
       'content': item.content.rendered,
-      'categoryName': item['_embedded']["wp:term"][0][0]['name']
+      /* 'categoryName': item['_embedded']["wp:term"][0][0]['name'] */
     };
   })
 
@@ -48,11 +49,26 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
     )
   }
 
+  const renderFooter = () => {
+    return(
+      isLoading ?
+      <View>
+        <ActivityIndicator size='large' color={colors.fucshia}/>
+      </View> : null
+    )
+  }
+  
+
   const onRefresh = () => {
     setIsFetching(true)
     setPage(1)
     getData()
   };
+
+  const fetchMoreNews = () => {
+    setPage(page+1)
+  }
+  
 
   return (
     <>
@@ -66,6 +82,9 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
         keyExtractor={(item, index) => index.toString()}
         onRefresh={onRefresh}
         refreshing={isFetching}
+        onEndReachedThreshold={0.5}
+        onEndReached={fetchMoreNews}
+        ListFooterComponent={renderFooter}
       />
     </>
   );
@@ -88,6 +107,6 @@ const NewsContainer = styled.View`
 `;
 
 const Loader = styled.View`
-  margin-top: 10px;
+  margin: 50px;
   align-items: center;
 `;
