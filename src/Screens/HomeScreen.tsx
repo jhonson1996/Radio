@@ -4,8 +4,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 import { colors } from '../Constants';
+import { Carrousel } from '../Components' 
 import { NewsCard } from '../Components'
-
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
@@ -19,7 +19,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
   );
 
   useEffect(() => {
-    fetch('https://laestacionlatinauk.com/wp-json/wp/v2/posts?per_page=20&_embed')
+    fetch('https://laestacionlatinauk.com/wp-json/wp/v2/posts?per_page=100&_embed')
       .then(res => res.json())
       .then(res => {
         setData(res)
@@ -36,6 +36,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
           'title': post.title.rendered,
           'image': post.jetpack_featured_media_url,
           'content': post.content.rendered,
+          'categoryName': post['_embedded']["wp:term"][0][0]['name']
         }
       );
       return posts;
@@ -46,18 +47,9 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView>
       <StatusBar animated={true} barStyle="light-content" backgroundColor={colors.fucshia} />
-      {/* Carrousel */}
-      <Image
-        style={{ width: '100%', height: 220 }}
-        source={{
-          uri: 'https://i1.wp.com/laestacionlatinauk.com/wp-content/uploads/2021/10/thumbnail_DSC_6339.jpg',
-        }}
-        resizeMode={'cover'}
-      />
-      {/* Carrousel */}
-
+      <Carrousel News={news.slice(0,2)} />
       <Container>
-        {news.map((category: any, index: any) => (
+        {news.slice(2, 9).map((category: any, index: any) => (
           (category.news.length > 1) ?
             <View key={index}>
               <HeaderContainer>
