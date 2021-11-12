@@ -1,26 +1,14 @@
 import React from 'react';
 import colors from "../../Constants/colors";
 import styled from 'styled-components/native';
-import { View, Image, TouchableOpacity, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-const DrawerMenu = (props: any) => {
-  return (
-    <TouchableOpacity onPress={props.navigation}>
-      <CategoryContainer >
-        <View>
-          <Icon name={props.iconName} size={30} color={colors.gray} style={{ marginLeft: 6, marginRight: 10 }} />
-        </View>
-        <View>
-          <Text >
-            {props.titleName}
-          </Text>
-        </View>
-      </CategoryContainer>
-    </TouchableOpacity>
-  )
-}
-
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native/';
+import Icon from '../CustomIcon/CustomIcon'
+import { DrawerItem, DrawerItemList, } from '@react-navigation/drawer';
 
 const Menu = (props: any) => {
   return (
@@ -30,29 +18,34 @@ const Menu = (props: any) => {
         <TextImg>La radio de la buena música</TextImg>
       </ViewContainer>
       <View>
-        <DrawerMenu iconName='rocket' titleName='Noticias' navigation={() => props.navigation.navigate('Home')} />
-        <DrawerMenu iconName='rocket' titleName='Emisora' navigation={() => props.navigation.navigate('Emisora')} />
-        <DrawerMenu iconName='rocket' titleName='Sobre Nosotros' />
-        <DrawerMenu iconName='rocket' titleName='RadioShow' />
-        <DrawerMenu iconName='rocket' titleName='Contacto' />
+        <DrawerItemList
+          {...props}
+          activeBackgroundColo={colors.navyblue}
+          labelStyle={{ color: '#fff' }}
+        />
       </View>
     </View>
   )
 }
 
 const Text = styled.Text`
-  font-family: ABeeZee-Regular;
-  color: ${colors.gray};
+  font-family: Alata;
+  font-style: normal;
+  font-weight: normal;
+  color: #000000;
   font-size: 15px;
+  padding-left: 5px;
 `;
 
 const TextImg = styled.Text`
   font-family: ABeeZee-Regular;
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
+  
 `;
 
 const CategoryContainer = styled.View`
+  margin-top: 25px;
   margin-left: ${Dimensions.get('window').width / 10}px;
   display: flex;
   flex-direction: row;
@@ -61,6 +54,7 @@ const CategoryContainer = styled.View`
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   padding: 5px;
+  /* background-color: ${colors.navyblue}; */
 `;
 
 const ViewContainer = styled.View`
@@ -72,6 +66,5 @@ height: ${Dimensions.get('window').height / 5}px;
 background-color: ${colors.fucshia};
 
 `;
-
 
 export default Menu;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, StatusBar, Image, ScrollView, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
-
 import { colors } from '../Constants';
 import { Carrousel } from '../Components' 
 import { NewsCard } from '../Components'
@@ -49,7 +48,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
       <StatusBar animated={true} barStyle="light-content" backgroundColor={colors.fucshia} />
       <Carrousel News={news.slice(0,2)} />
       <Container>
-        {news.slice(2, 9).map((category: any, index: any) => (
+        {news.slice(2, 100).map((category: any, index: any) => (
           (category.news.length > 1) ?
             <View key={index}>
               <HeaderContainer>
