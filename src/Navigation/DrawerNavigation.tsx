@@ -1,195 +1,112 @@
 import React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Alert, Text } from 'react-native'
+import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { colors } from '../Constants';
+import Menu from '../Components/Menu/Menu';
 import { HomeStackNavigator } from './StackNavigation';
 import { Schedule } from '../Screens/Schedule';
-import Menu from '../Components/Menu/Menu';
 import { RadioShow } from '../Screens/RadioShow';
-import { NewsCategoryScreen } from "../Screens/CategoryScreen"
-/* import Icon from '../Components/CustomIcon/CustomIcon' */
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Drawer = createDrawerNavigator();
 const ScreenOptions = {
-  headerShown: false,
+  headerShown: true,
+  headerStyle: {
+    elevation: 0,
+    backgroundColor: colors.fucshia,
+  },
+  headerTitleAlign: "center",
+  headerTintColor: 'white',
+  headerBackTitle: 'Atrás',
+  headerTitleStyle: {
+    fontSize: 22,
+    fontFamily: 'ABeeZee-Regular'
+  },
   drawerStyle: {
     backgroundColor: colors.background
-  },
-  contentOptions: {
-    activeTintColor: '#e91e63',
-    activeBackgroundColor: 'purple',
-    itemsContainerStyle: {
-      marginVertical: 0,
-    },
-    iconContainerStyle: {
-      opacity: 1
-    }
   },
   drawerItemStyle: {
     marginLeft: 40,
     marginRight: 0,
-    marginTop: 20,
-    borderBottomRightRadius: 0,
     borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
     borderTopRightRadius: 0,
-    borderBottomLeftRadius: 8
+    borderBottomRightRadius: 0
   },
-  drawerLabelStyle: {
-    color: '#000000',
-    fontFamily: 'ABeeZee-Regular'
-  },
+  drawerActiveBackgroundColor: colors.navyblue,
+  drawerInactiveTintColor: colors.navyblue,
+  drawerActiveTintColor: '#fff',
+  drawerLabelStyle: { fontFamily: 'ABeeZee-Regular', fontSize: 17 }
 }
+
 
 export default () => (
   <Drawer.Navigator screenOptions={ScreenOptions} drawerContent={(props) => <Menu {...props} />} >
     <Drawer.Screen
       name="Home"
       component={HomeStackNavigator}
-      options={
-        {
-          drawerLabel: 'Noticias',
-          drawerIcon: ({ color, size }) => (
-            <Icon
-              name="facebook" size={24} color={color}
-              style={{ marginLeft: 5 }}
-            />
-          ),
-          title: 'LA ESTACIÓN LATINA UK',
-          drawerActiveBackgroundColor: colors.navyblue,
-
-          headerTitleAlign: 'center',
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontSize: 20,
-            fontFamily: 'ABeeZee-Regular'
-          },
-
-          drawerInactiveTintColor: '#000000',
-          drawerActiveTintColor: '#ffffff',
-
-        }
-      }
+      options={{
+        headerShown: false,
+        drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Noticias'}</Text>,
+        drawerIcon: ({ color, size }) => (
+          <Icon
+            name="home" size={26} color={color}
+            style={{ marginLeft: 5 }}
+          />
+        )
+      }}
     />
     <Drawer.Screen
-      name="Emisora"
+      name="Programación"
       component={Schedule}
-      options={
-        {
-          drawerLabel: 'Emisora',
-          drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle: {
-            color: '#000000',
-            fontFamily: 'ABeeZee-Regular'
-          },
-          drawerItemStyle: {
-            marginLeft: 40,
-            marginRight: 0,
-            borderTopLeftRadius: 8,
-            borderBottomRightRadius: 0,
-            borderTopRightRadius: 0,
-            borderBottomLeftRadius: 8
-          },
-          drawerIcon: ({ color, size }) => (
-            <Icon
-              name="emisora" size={24} color={color}
-              style={{ marginLeft: 5 }}
-            />
-          ),
-          drawerInactiveTintColor: '#000000',
-          drawerActiveTintColor: '#fffdfd',
-        }
-      }
-
+      options={{
+        drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Programación'}</Text>,
+        drawerIcon: ({ color }) => (
+          <Icon
+            name="radio" size={26} color={color}
+            style={{ marginLeft: 5 }}
+          />
+        )
+      }}
     />
     <Drawer.Screen
       name="Sobre Nosotros"
-      component={HomeStackNavigator}
-      options={
-        {
-          drawerLabel: 'Sobre Nosotros',
-          drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle: {
-            color: '#000000',
-            fontFamily: 'ABeeZee-Regular'
-          },
-          drawerItemStyle: {
-            marginLeft: 40,
-            marginRight: 0,
-            borderTopLeftRadius: 8,
-            borderBottomRightRadius: 0,
-            borderTopRightRadius: 0,
-            borderBottomLeftRadius: 8
-          },
-          drawerIcon: ({ color, size }) => (
-            <Icon
-              name="emisora" size={24} color={color}
-              style={{ marginLeft: 5 }}
-            />
-          ),
-          drawerInactiveTintColor: '#000000',
-          drawerActiveTintColor: '#fffdfd',
-        }
-      }
+      component={() => <></>}
+      options={{
+        drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Sobre Nosotros'}</Text>,
+        drawerIcon: ({ color }) => (
+          <Icon
+            name="emisora" size={26} color={color}
+            style={{ marginLeft: 5 }}
+          />
+        )
+      }}
     />
     <Drawer.Screen
       name="RadioShow"
       component={RadioShow}
-      options={
-        {
-          drawerLabel: 'RadioShow',
-          drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle: {
-            color: '#000000',
-            fontFamily: 'ABeeZee-Regular'
-          },
-          drawerItemStyle: {
-            marginLeft: 40,
-            marginRight: 0,
-            borderTopLeftRadius: 8,
-            borderBottomRightRadius: 0,
-            borderTopRightRadius: 0,
-            borderBottomLeftRadius: 8
-          },
-          drawerIcon: ({ color, size }) => (
-            <Icon
-              name="Youtube" size={24} color={color}
-              style={{ marginLeft: 5 }}
-            />
-          ),
-          drawerInactiveTintColor: '#000000',
-          drawerActiveTintColor: '#fffdfd',
-        }
-      }
+      options={{
+        drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'RadioShow'}</Text>,
+        drawerIcon: ({ color }) => (
+          <Icon
+            name="video" size={26} color={color}
+            style={{ marginLeft: 5 }}
+          />
+        )
+      }}
     />
     <Drawer.Screen
       name="Contacto"
-      component={HomeStackNavigator}
-      options={
-        {
-          drawerLabel: 'Contacto',
-          drawerLabelStyle: {
-            color: '#000000',
-            fontFamily: 'ABeeZee-Regular'
-          },
-          drawerActiveBackgroundColor: colors.navyblue,
-          drawerItemStyle: {
-            marginLeft: 40,
-            marginRight: 0,
-            borderBottomRightRadius: 0,
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 0,
-            borderBottomLeftRadius: 8
-          },
-          drawerIcon: ({ color, size }) => (
-            <Icon
-              name="contacto" size={24} color={color}
-              style={{ marginLeft: 5 }}
-            />
-          ),
-          drawerInactiveTintColor: '#000000',
-          drawerActiveTintColor: '#fffdfd',
-        }
-      }
+      component={() => <></>}
+      options={{
+        drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Contacto'}</Text>,
+        drawerIcon: ({ color }) => (
+          <Icon
+            name="info" size={26} color={color}
+            style={{ marginLeft: 5 }}
+          />
+        )
+      }}
     />
   </Drawer.Navigator>
 );
