@@ -12,7 +12,7 @@ import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 import { NewsDetailScreen } from "../Screens/NewsDetailScreen";
 import { View } from "react-native";
 import { Player } from "../Components";
-import { Video } from "../Components";
+import { Video } from "../Screens/Video";
 
 
 const Stack = createStackNavigator();

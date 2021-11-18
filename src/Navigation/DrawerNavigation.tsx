@@ -2,9 +2,9 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../Constants';
 import { HomeStackNavigator } from './StackNavigation';
-import {Shedule} from '../Components/';
+import { Schedule } from '../Screens/Schedule';
 import Menu from '../Components/Menu/Menu';
-import {RadioShow} from '../Components';
+import { RadioShow } from '../Screens/RadioShow';
 import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 /* import Icon from '../Components/CustomIcon/CustomIcon' */
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,7 +17,7 @@ const ScreenOptions = {
   },
   contentOptions: {
     activeTintColor: '#e91e63',
-    activeBackgroundColor : 'purple',
+    activeBackgroundColor: 'purple',
     itemsContainerStyle: {
       marginVertical: 0,
     },
@@ -29,12 +29,12 @@ const ScreenOptions = {
     marginLeft: 40,
     marginRight: 0,
     marginTop: 20,
-    borderBottomRightRadius:0,
-    borderTopLeftRadius:8,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: 8,
     borderTopRightRadius: 0,
-    borderBottomLeftRadius:8
+    borderBottomLeftRadius: 8
   },
-  drawerLabelStyle:{
+  drawerLabelStyle: {
     color: '#000000',
     fontFamily: 'ABeeZee-Regular'
   },
@@ -48,58 +48,58 @@ export default () => (
       options={
         {
           drawerLabel: 'Noticias',
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <Icon
-               name="facebook" size={24} color={color}
-               style={{marginLeft: 5}}
+              name="facebook" size={24} color={color}
+              style={{ marginLeft: 5 }}
             />
           ),
           title: 'LA ESTACIÓN LATINA UK',
           drawerActiveBackgroundColor: colors.navyblue,
-          
+
           headerTitleAlign: 'center',
           headerTintColor: 'white',
           headerTitleStyle: {
             fontSize: 20,
             fontFamily: 'ABeeZee-Regular'
           },
-          
+
           drawerInactiveTintColor: '#000000',
           drawerActiveTintColor: '#ffffff',
-          
+
         }
       }
     />
     <Drawer.Screen
       name="Emisora"
-      component={RadioShow}
+      component={Schedule}
       options={
         {
           drawerLabel: 'Emisora',
           drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle:{
+          drawerLabelStyle: {
             color: '#000000',
             fontFamily: 'ABeeZee-Regular'
           },
           drawerItemStyle: {
-            marginLeft: 40, 
-            marginRight: 0, 
-            borderTopLeftRadius:8,
-            borderBottomRightRadius:0,
-            borderTopRightRadius: 0, 
-            borderBottomLeftRadius:8
+            marginLeft: 40,
+            marginRight: 0,
+            borderTopLeftRadius: 8,
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 8
           },
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <Icon
-               name="emisora" size={24} color={color}
-               style={{marginLeft: 5}}
+              name="emisora" size={24} color={color}
+              style={{ marginLeft: 5 }}
             />
           ),
           drawerInactiveTintColor: '#000000',
           drawerActiveTintColor: '#fffdfd',
         }
       }
-      
+
     />
     <Drawer.Screen
       name="Sobre Nosotros"
@@ -108,22 +108,22 @@ export default () => (
         {
           drawerLabel: 'Sobre Nosotros',
           drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle:{
+          drawerLabelStyle: {
             color: '#000000',
             fontFamily: 'ABeeZee-Regular'
           },
           drawerItemStyle: {
-            marginLeft: 40, 
-            marginRight: 0, 
-            borderTopLeftRadius:8,
-            borderBottomRightRadius:0,
-            borderTopRightRadius: 0, 
-            borderBottomLeftRadius:8
+            marginLeft: 40,
+            marginRight: 0,
+            borderTopLeftRadius: 8,
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 8
           },
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <Icon
-               name="emisora" size={24} color={color}
-               style={{marginLeft: 5}}
+              name="emisora" size={24} color={color}
+              style={{ marginLeft: 5 }}
             />
           ),
           drawerInactiveTintColor: '#000000',
@@ -133,26 +133,27 @@ export default () => (
     />
     <Drawer.Screen
       name="RadioShow"
-      component={Shedule}
+      component={RadioShow}
       options={
         {
           drawerLabel: 'RadioShow',
           drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle:{
+          drawerLabelStyle: {
             color: '#000000',
-            fontFamily: 'ABeeZee-Regular'},
-          drawerItemStyle: {
-            marginLeft: 40, 
-            marginRight: 0, 
-            borderTopLeftRadius:8,
-            borderBottomRightRadius:0,
-            borderTopRightRadius: 0, 
-            borderBottomLeftRadius:8
+            fontFamily: 'ABeeZee-Regular'
           },
-          drawerIcon: ({color, size}) => (
+          drawerItemStyle: {
+            marginLeft: 40,
+            marginRight: 0,
+            borderTopLeftRadius: 8,
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 8
+          },
+          drawerIcon: ({ color, size }) => (
             <Icon
-               name="Youtube" size={24} color={color}
-               style={{marginLeft: 5}}
+              name="Youtube" size={24} color={color}
+              style={{ marginLeft: 5 }}
             />
           ),
           drawerInactiveTintColor: '#000000',
@@ -172,17 +173,17 @@ export default () => (
           },
           drawerActiveBackgroundColor: colors.navyblue,
           drawerItemStyle: {
-            marginLeft: 40, 
+            marginLeft: 40,
             marginRight: 0,
-            borderBottomRightRadius:0, 
-            borderTopLeftRadius:8, 
-            borderTopRightRadius: 0, 
-            borderBottomLeftRadius:8
+            borderBottomRightRadius: 0,
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 8
           },
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <Icon
-               name="contacto" size={24} color={color}
-               style={{marginLeft: 5}}
+              name="contacto" size={24} color={color}
+              style={{ marginLeft: 5 }}
             />
           ),
           drawerInactiveTintColor: '#000000',

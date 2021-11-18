@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { colors } from '../../Constants';
+import { colors } from '../Constants';
 
 const Tab = createMaterialTopTabNavigator();
 
-export const Shedule = () => {
+export const Schedule = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {

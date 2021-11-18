@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../../Constants';
+import { colors } from '../Constants';
 import styled from 'styled-components/native';
 
 
