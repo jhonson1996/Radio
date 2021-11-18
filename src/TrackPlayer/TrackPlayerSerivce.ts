@@ -30,5 +30,5 @@ export const radioInit = async () => {
     url: 'http://c32.radioboss.fm/stream/466',
   });
 
-  TrackPlayer.play();
+  TrackPlayer.stop();
 };

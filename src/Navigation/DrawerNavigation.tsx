@@ -2,6 +2,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../Constants';
 import { HomeStackNavigator } from './StackNavigation';
+import {Shedule} from '../Components/';
 import Menu from '../Components/Menu/Menu';
 import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 /* import Icon from '../Components/CustomIcon/CustomIcon' */
@@ -110,7 +111,8 @@ export default () => (
             color: '#000000',
             fontFamily: 'ABeeZee-Regular'
           },
-          drawerItemStyle: {marginLeft: 40, 
+          drawerItemStyle: {
+            marginLeft: 40, 
             marginRight: 0, 
             borderTopLeftRadius:8,
             borderBottomRightRadius:0,
@@ -130,13 +132,16 @@ export default () => (
     />
     <Drawer.Screen
       name="RadioShow"
-      component={HomeStackNavigator}
+      component={Shedule}
       options={
         {
-          drawerLabel: 'Youtube',
+          drawerLabel: 'RadioShow',
           drawerActiveBackgroundColor: colors.navyblue,
-          drawerLabelStyle:{color: '#000000',fontFamily: 'ABeeZee-Regular'},
-          drawerItemStyle: {marginLeft: 40, 
+          drawerLabelStyle:{
+            color: '#000000',
+            fontFamily: 'ABeeZee-Regular'},
+          drawerItemStyle: {
+            marginLeft: 40, 
             marginRight: 0, 
             borderTopLeftRadius:8,
             borderBottomRightRadius:0,
@@ -160,9 +165,13 @@ export default () => (
       options={
         {
           drawerLabel: 'Contacto',
-          drawerLabelStyle: {color: '#000000',fontFamily: 'ABeeZee-Regular'},
+          drawerLabelStyle: {
+            color: '#000000',
+            fontFamily: 'ABeeZee-Regular'
+          },
           drawerActiveBackgroundColor: colors.navyblue,
-          drawerItemStyle: {marginLeft: 40, 
+          drawerItemStyle: {
+            marginLeft: 40, 
             marginRight: 0,
             borderBottomRightRadius:0, 
             borderTopLeftRadius:8, 
