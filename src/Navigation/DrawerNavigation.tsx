@@ -4,6 +4,7 @@ import { colors } from '../Constants';
 import { HomeStackNavigator } from './StackNavigation';
 import {Shedule} from '../Components/';
 import Menu from '../Components/Menu/Menu';
+import {RadioShow} from '../Components';
 import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 /* import Icon from '../Components/CustomIcon/CustomIcon' */
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -71,7 +72,7 @@ export default () => (
     />
     <Drawer.Screen
       name="Emisora"
-      component={HomeStackNavigator}
+      component={RadioShow}
       options={
         {
           drawerLabel: 'Emisora',
@@ -105,7 +106,7 @@ export default () => (
       component={HomeStackNavigator}
       options={
         {
-          drawerLabel: 'Emisora',
+          drawerLabel: 'Sobre Nosotros',
           drawerActiveBackgroundColor: colors.navyblue,
           drawerLabelStyle:{
             color: '#000000',
