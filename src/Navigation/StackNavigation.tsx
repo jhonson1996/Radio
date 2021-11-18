@@ -12,6 +12,8 @@ import { NewsCategoryScreen } from "../Screens/CategoryScreen"
 import { NewsDetailScreen } from "../Screens/NewsDetailScreen";
 import { View } from "react-native";
 import { Player } from "../Components";
+import { Video } from "../Components";
+
 
 const Stack = createStackNavigator();
 
@@ -70,6 +72,13 @@ const HomeStackNavigator = () => {
             component={NewsDetailScreen}
             options={(props: any) => ({
               title: props.route.params.category,
+            })}
+          />
+          <Stack.Screen
+            name="Video"
+            component={Video}
+            options={(props: any) => ({
+              title: 'Videos',
             })}
           />
         </Stack.Navigator>
