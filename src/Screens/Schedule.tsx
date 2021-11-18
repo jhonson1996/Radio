@@ -25,11 +25,9 @@ export const Schedule = () => {
             {item._embedded["wp:term"][0].map((el: any) => {
               text = `${el.name}`
               return (
-                <ContainerParagraph>
                   <Paragraph>
                     {text}
                   </Paragraph>
-                </ContainerParagraph>
               )
             })}
           </Card>
@@ -53,11 +51,6 @@ const Card = styled.View`
 
 const Container = styled.View`
     margin: 10px 10px 0 10px;
-`;
-
-const ContainerParagraph = styled.View`
-    display: flex;
-    flex-direction: row; 
 `;
 
 const Title = styled.Text`
