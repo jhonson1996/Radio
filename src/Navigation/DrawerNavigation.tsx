@@ -8,6 +8,7 @@ import { HomeStackNavigator } from './StackNavigation';
 import { Schedule } from '../Screens/Schedule';
 import { RadioShow } from '../Screens/RadioShow';
 import { About } from '../Screens/About';
+import { Contact } from '../Screens/Contact';
 
 const Drawer = createDrawerNavigator();
 const ScreenOptions = {
@@ -98,7 +99,7 @@ export default () => (
     />
     <Drawer.Screen
       name="Contacto"
-      component={() => <></>}
+      component={Contact}
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Contacto'}</Text>,
         drawerIcon: ({ color }) => (
