@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { colors } from '../Constants';
 
-const Tab = createMaterialTopTabNavigator();
-
 export const Schedule = () => {
+
   const [news, setNews] = useState([]);
+  let text = '';
 
   useEffect(() => {
     fetch('https://laestacionlatinauk.com/wp-json/wp/v2/shows?_embed')
@@ -17,65 +16,28 @@ export const Schedule = () => {
       })
   }, []);
 
-  const TextContainer = ({ text }) => {
-    const ViewText = styled.View`
-    display: flex;
-    flex-direction: row;
-    `;
-    return (
-      <ViewText>
-        <Paragraph>{text}</Paragraph>
-      </ViewText>
-    )
-  }
-
-
-  const Programming = () => {
-    let text = '';
-    return (
-      <ScrollView>
-        {news.map((item) => (
-          <Container>
-            <Card>
-              <Title>{item.title.rendered}</Title>
-              {item._embedded["wp:term"][0].map((el: any) => {
-                text = `${el.name}`
-                return (
-                  <ContainerParagraph>
-                    <Paragraph>
-                      {text}
-                    </Paragraph>
-                  </ContainerParagraph>
-                )
-              })}
-            </Card>
-          </Container>
-        ))}
-      </ScrollView>
-    );
-  }
   return (
-
-    <Tab.Navigator>
-      <Tab.Screen
-        name="PROGRAMACION"
-        component={Programming}
-      />
-      <Tab.Screen name="FIN DE SEMANA" component={Weekend} />
-    </Tab.Navigator>
+    <ScrollView>
+      {news.map((item) => (
+        <Container>
+          <Card>
+            <Title>{item.title.rendered}</Title>
+            {item._embedded["wp:term"][0].map((el: any) => {
+              text = `${el.name}`
+              return (
+                <ContainerParagraph>
+                  <Paragraph>
+                    {text}
+                  </Paragraph>
+                </ContainerParagraph>
+              )
+            })}
+          </Card>
+        </Container>
+      ))}
+    </ScrollView>
   )
 }
-
-
-function Weekend() {
-  return (
-
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
 
 const Card = styled.View`
     display: flex;
