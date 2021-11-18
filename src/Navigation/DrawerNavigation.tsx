@@ -7,6 +7,7 @@ import Menu from '../Components/Menu/Menu';
 import { HomeStackNavigator } from './StackNavigation';
 import { Schedule } from '../Screens/Schedule';
 import { RadioShow } from '../Screens/RadioShow';
+import { About } from '../Screens/About';
 
 const Drawer = createDrawerNavigator();
 const ScreenOptions = {
@@ -71,7 +72,7 @@ export default () => (
     />
     <Drawer.Screen
       name="Sobre Nosotros"
-      component={() => <></>}
+      component={About}
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Sobre Nosotros'}</Text>,
         drawerIcon: ({ color }) => (
