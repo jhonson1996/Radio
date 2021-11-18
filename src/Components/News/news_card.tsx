@@ -3,9 +3,9 @@ import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export default (props: any) => {
-  return(
+  return (
     <NewsCard>
-      <Image source={{uri: props.item.image}}/>
+      <Image source={props.item.image ? { uri: props.item.image } : require('../../../assets/images/image-placeholder.png')} />
       <TextContainer>
         <Text numberOfLines={4} ellipsizeMode='tail'>{props.item.title}</Text>
       </TextContainer>
@@ -14,8 +14,8 @@ export default (props: any) => {
 }
 
 const NewsCard = styled.View`
-  width: ${Dimensions.get('window').width/2.28}px;
-  height: ${Dimensions.get('window').height/5}px
+  width: ${Dimensions.get('window').width / 2.28}px;
+  height: ${Dimensions.get('window').height / 5}px
   background-color: white;
   border-radius: 25px;
   elevation: 15;
