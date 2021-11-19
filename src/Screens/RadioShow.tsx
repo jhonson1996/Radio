@@ -7,8 +7,8 @@ import { colors } from '../Constants';
 import moment from 'moment';
 import 'moment/locale/es'
 import Icon from 'react-native-vector-icons/AntDesign';
+import { GOOGLE_API_KEY } from '@env';
 
-const API_KEY = "AIzaSyB-lsEO8Y6vbko1gounKx3awcKZ-OWull4";
 const CHANNEL_ID = "UCONp2n-eo4F6nkK_uN9bE_A";
 
 export const RadioShow = () => {
@@ -22,7 +22,7 @@ export const RadioShow = () => {
     getData();
   }, []);
 
-  const getData = (url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=20&key=${API_KEY}`) => {
+  const getData = (url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=20&key=${GOOGLE_API_KEY}`) => {
     setIsLoading(true)
     fetch(url)
       .then(res => res.json())

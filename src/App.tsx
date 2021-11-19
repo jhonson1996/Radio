@@ -5,10 +5,9 @@ import { colors } from './Constants';
 import DrawerNavigator from './Navigation/DrawerNavigation';
 import { radioInit } from './TrackPlayer/TrackPlayerSerivce';
 import OneSignal from 'react-native-onesignal';
-
+import { ID_ONESIGNAL } from '@env';
 
 // REMOTE NOTIFICATIONS SETUP START //
-const ID_ONESIGNAL = '9102ece9-847f-4c00-9dd5-69cf1f26579a'
 OneSignal.setLogLevel(6, 0);
 OneSignal.setAppId(ID_ONESIGNAL);
 //Prompt for push on iOS
