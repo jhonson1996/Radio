@@ -3,16 +3,16 @@ import { ActivityIndicator, FlatList, Pressable, SafeAreaView, ScrollView, Style
 import styled from 'styled-components/native';
 
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../Constants';
+import { colors, constants } from '../Constants';
 import moment from 'moment';
 import 'moment/locale/es'
 import Icon from 'react-native-vector-icons/AntDesign';
 import { GOOGLE_API_KEY } from '@env';
 
-const CHANNEL_ID = "UCONp2n-eo4F6nkK_uN9bE_A";
 
 export const RadioShow = () => {
 
+  const { YOUTUBE_API, YOUTUBE_ID_CHANNEL } = constants;
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [token, setToken] = useState('');
@@ -22,7 +22,7 @@ export const RadioShow = () => {
     getData();
   }, []);
 
-  const getData = (url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=20&key=${GOOGLE_API_KEY}`) => {
+  const getData = (url = `${YOUTUBE_API}?order=date&part=snippet&channelId=${YOUTUBE_ID_CHANNEL}&maxResults=20&key=${GOOGLE_API_KEY}`) => {
     setIsLoading(true)
     fetch(url)
       .then(res => res.json())
@@ -50,7 +50,7 @@ export const RadioShow = () => {
   }
 
   const fetchMoreVideos = () => {
-    let url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&pageToken=${token}&maxResults=20&key=${API_KEY}`
+    let url = `${YOUTUBE_API}?order=date&part=snippet&channelId=${YOUTUBE_ID_CHANNEL}&pageToken=${token}&maxResults=20&key=${GOOGLE_API_KEY}`
     if (token) {
       getData(url);
     } else {

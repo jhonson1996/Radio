@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, StatusBar, Image, ScrollView, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { colors } from '../Constants';
-import { Carrousel } from '../Components' 
+import { colors, constants } from '../Constants';
+import { Carrousel } from '../Components'
 import { NewsCard } from '../Components'
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -18,7 +18,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
   );
 
   useEffect(() => {
-    fetch('https://laestacionlatinauk.com/wp-json/wp/v2/posts?per_page=100&_embed')
+    fetch(`${constants.WORDPRESS_API}/posts?per_page=100&_embed`)
       .then(res => res.json())
       .then(res => {
         setData(res)
@@ -46,7 +46,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView>
       <StatusBar animated={true} barStyle="light-content" backgroundColor={colors.fucshia} />
-      <Carrousel News={news.slice(0,2)} />
+      <Carrousel News={news.slice(0, 2)} />
       <Container>
         {news.slice(2, 100).map((category: any, index: any) => (
           (category.news.length > 1) ?

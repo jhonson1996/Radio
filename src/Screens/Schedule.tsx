@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
-import { colors } from '../Constants';
+import { colors, constants } from '../Constants';
 
 export const Schedule = () => {
 
@@ -9,7 +9,7 @@ export const Schedule = () => {
   let text = '';
 
   useEffect(() => {
-    fetch('https://laestacionlatinauk.com/wp-json/wp/v2/shows?_embed')
+    fetch(`${constants.WORDPRESS_API}/shows?_embed`)
       .then(res => res.json())
       .then(res => {
         setNews(res)

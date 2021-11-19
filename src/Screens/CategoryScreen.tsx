@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, Pressable, FlatList, View, ActivityIndicator } from 'react-native';
 import { NewsCard } from '../Components'
-import { colors } from '../Constants';
+import { colors, constants } from '../Constants';
 
 export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, route: any }) => {
 
@@ -17,7 +17,7 @@ export const NewsCategoryScreen = ({ navigation, route }: { navigation: any, rou
 
   const getData = async () => {
     setIsLoading(true)
-    fetch(`https://laestacionlatinauk.com/wp-json/wp/v2/posts?categories=${id}&_embed&per_page=10&page=${page}`)
+    fetch(`${constants.WORDPRESS_API}/posts?categories=${id}&_embed&per_page=10&page=${page}`)
       .then(res => res.json())
       .then(res => {
         if (res.length > 0 && res !== undefined) {

@@ -1,4 +1,5 @@
 import TrackPlayer, {Capability, Event} from 'react-native-track-player';
+import {constants} from '../Constants';
 
 export const radioInit = async () => {
   TrackPlayer.registerPlaybackService(
@@ -27,8 +28,8 @@ export const radioInit = async () => {
   }
 
   await TrackPlayer.add({
-    url: 'http://c32.radioboss.fm/stream/466',
+    url: constants.STREAMING_URL,
   });
 
-  TrackPlayer.stop();
+  TrackPlayer.play();
 };
