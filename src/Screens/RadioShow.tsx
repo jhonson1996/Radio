@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { colors } from '../Constants';
 import styled from 'styled-components/native';
 
-const API_KEY = "AIzaSyCmEIjIsBk6qigDSHJcc5CplTU4gPzQJ8s";
+import { useNavigation } from '@react-navigation/native';
+import { colors } from '../Constants';
+import moment from 'moment';
+import 'moment/locale/es'
+import Icon from 'react-native-vector-icons/AntDesign';
+
+const API_KEY = "AIzaSyB-lsEO8Y6vbko1gounKx3awcKZ-OWull4";
 const CHANNEL_ID = "UCONp2n-eo4F6nkK_uN9bE_A";
 
 export const RadioShow = () => {
 
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
   const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,30 +23,39 @@ export const RadioShow = () => {
   }, []);
 
   const getData = (url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=20&key=${API_KEY}`) => {
+    setIsLoading(true)
     fetch(url)
       .then(res => res.json())
       .then(res => {
         if (res.items.length > 0 && res !== undefined) {
+          if (res.nextPageToken) {
+            setToken(res.nextPageToken)
+          } else {
+            setToken('')
+          }
           setData([...data, ...res.items])
-          setToken(res.nextPageToken)
         } else {
           setIsLoading(false)
         }
-        setIsFetching(false)
       })
   }
 
   const renderFooter = () => {
     return (
-      <View style={{ marginTop: 10, alignItems: 'center' }}>
-        <ActivityIndicator size='large' color={colors.fucshia} />
-      </View>
+      isLoading ?
+        <View style={{ marginTop: 15, alignItems: 'center' }}>
+          <ActivityIndicator size='large' color={colors.fucshia} />
+        </View> : null
     )
   }
 
   const fetchMoreVideos = () => {
     let url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&pageToken=${token}&maxResults=20&key=${API_KEY}`
-    getData(url);
+    if (token) {
+      getData(url);
+    } else {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -53,28 +65,40 @@ export const RadioShow = () => {
         keyExtractor={(item, index) => index.toString()}
         onEndReachedThreshold={0.5}
         onEndReached={fetchMoreVideos}
+        contentContainerStyle={{ paddingBottom: 25 }}
         ListFooterComponent={renderFooter}
         renderItem={
-          ({ item }) =>
-            <TouchableOpacity
+          ({ item }) => {
 
+            const date = moment(item.snippet.publishedAt)
+
+            return (<TouchableOpacity
               onPress={() => navigation.navigate('Video', { item })}
             >
               <Container>
                 <Card>
+                  <Title color={colors.navyblue} size='16.5'>{item.snippet.title}</Title>
                   <Image source={{ uri: item.snippet.thumbnails.medium.url }} />
-                  <Title>{item.snippet.title}</Title>
+                  <ViewDate>
+                    <Icon name="clockcircleo" size={15} color={colors.gray} style={{ marginRight: 5 }} />
+                    <Title color={colors.gray} size='12'>{date.locale('es').fromNow()}</Title>
+                  </ViewDate>
                 </Card>
               </Container>
-            </TouchableOpacity>
+            </TouchableOpacity>)
+          }
         }
       />
-      <ScrollView>
-      </ScrollView>
     </SafeAreaView>
   )
-
 }
+
+const ViewDate = styled.View`
+    display: flex;
+    flex-direction: row;
+    margin-left: 2px;
+    align-items: center;
+`;
 
 const Image = styled.Image`
   width: 100%;
@@ -85,6 +109,7 @@ const Image = styled.Image`
   borderBottomLeftRadius: 20px;
   resize-mode: cover;
   margin-bottom: 10px;
+  margin-top: 5px;
 `
 const Card = styled.View`
     display: flex;
@@ -104,14 +129,13 @@ const Card = styled.View`
 `;
 
 const Title = styled.Text`
+    align-items: flex-start;
     padding: 0px;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: ${props => props.size}px;
     color: #000000;
-    font-family: ABeeZee;
-    font-weight: normal;
-    font-style: italic;
-    color: ${colors.gray};
+    font-family: ABeeZee-Regular;
+    color: ${props => props.color};
 `;
 
 const Container = styled.View`
