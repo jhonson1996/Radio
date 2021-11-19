@@ -1,66 +1,78 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../Constants';
 import styled from 'styled-components/native';
 
-
-const MAX_RESULT = 15;
-const PLAYLIST_ID = "PLqT8cJpJNZ7oIWjxqr8fzd0tTAwax24yI";
-const API_KEY = "AIzaSyBhPWlkWIXdNTKcdZVg7ipSdhK1KCKo1bs";
+const API_KEY = "AIzaSyCmEIjIsBk6qigDSHJcc5CplTU4gPzQJ8s";
 const CHANNEL_ID = "UCONp2n-eo4F6nkK_uN9bE_A";
-
 
 export const RadioShow = () => {
 
-    const navigation = useNavigation();
-    const [data, setData] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
+  const navigation = useNavigation();
+  const [data, setData] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
+  const [token, setToken] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        getData();
-    }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
-    const getData = () => {
-        fetch(`https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=25&key=${API_KEY}`)
-            .then(res => res.json())
-            .then(res => {
-                setData(res['items'])
-            })
-    }
+  const getData = (url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&maxResults=20&key=${API_KEY}`) => {
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        if (res.items.length > 0 && res !== undefined) {
+          setData([...data, ...res.items])
+          setToken(res.nextPageToken)
+        } else {
+          setIsLoading(false)
+        }
+        setIsFetching(false)
+      })
+  }
 
-
-    const onRefresh = () => {
-        setData([])
-        getData();
-    };
-
+  const renderFooter = () => {
     return (
-        <SafeAreaView >
-            <FlatList
-                data={data}
-                keyExtractor={(item, index) => index.toString()}
-                onRefresh={onRefresh}
-                refreshing={isFetching}
-                renderItem={
-                    ({ item }) =>
-                        <TouchableOpacity
-
-                            onPress={() => navigation.navigate('Video', { item })}
-                        >
-                            <Container>
-                                <Card>
-                                    <Image source={{ uri: item.snippet.thumbnails.medium.url }} />
-                                    <Title>{item.snippet.title}</Title>
-                                </Card>
-                            </Container>
-                        </TouchableOpacity>
-                }
-            />
-            <ScrollView>
-            </ScrollView>
-        </SafeAreaView>
+      <View style={{ marginTop: 10, alignItems: 'center' }}>
+        <ActivityIndicator size='large' color={colors.fucshia} />
+      </View>
     )
+  }
+
+  const fetchMoreVideos = () => {
+    let url = `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=${CHANNEL_ID}&pageToken=${token}&maxResults=20&key=${API_KEY}`
+    getData(url);
+  }
+
+  return (
+    <SafeAreaView >
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReachedThreshold={0.5}
+        onEndReached={fetchMoreVideos}
+        ListFooterComponent={renderFooter}
+        renderItem={
+          ({ item }) =>
+            <TouchableOpacity
+
+              onPress={() => navigation.navigate('Video', { item })}
+            >
+              <Container>
+                <Card>
+                  <Image source={{ uri: item.snippet.thumbnails.medium.url }} />
+                  <Title>{item.snippet.title}</Title>
+                </Card>
+              </Container>
+            </TouchableOpacity>
+        }
+      />
+      <ScrollView>
+      </ScrollView>
+    </SafeAreaView>
+  )
 
 }
 
@@ -74,7 +86,6 @@ const Image = styled.Image`
   resize-mode: cover;
   margin-bottom: 10px;
 `
-
 const Card = styled.View`
     display: flex;
     flex-direction: column;
@@ -107,19 +118,3 @@ const Container = styled.View`
     margin: 20px 20px 0 20px;
 `;
 
-const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: '#fff'
-    },
-    demacate: {
-        borderBottomColor: 'blue',
-        borderBottomWidth: 2,
-        borderRadius: 10
-    },
-    item: {
-        padding: 10,
-        fontSize: 12,
-        height: 44,
-    },
-});
