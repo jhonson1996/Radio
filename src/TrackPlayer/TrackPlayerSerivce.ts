@@ -11,6 +11,9 @@ export const radioInit = async () => {
         TrackPlayer.addEventListener(Event.RemotePause, () =>
           TrackPlayer.pause(),
         );
+        TrackPlayer.addEventListener(Event.RemoteStop, () => 
+          TrackPlayer.pause(),
+        );
       },
   );
 
@@ -18,7 +21,7 @@ export const radioInit = async () => {
     TrackPlayer.updateOptions({
       stopWithApp: true,
       alwaysPauseOnInterruption: true,
-      capabilities: [Capability.Play, Capability.Pause],
+      capabilities: [Capability.Play, Capability.Pause, Capability.Stop],
     });
 
     await TrackPlayer.setupPlayer();
@@ -29,6 +32,10 @@ export const radioInit = async () => {
 
   await TrackPlayer.add({
     url: constants.STREAMING_URL,
+    title: 'ESTACION LATINA UK',
+    artwork: `${require('./img/Logo1.png')}`,
+    artist: 'Al AIRE',
+    
   });
 
   TrackPlayer.play();
