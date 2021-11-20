@@ -4,8 +4,10 @@ import {
   Text
 } from 'react-native';
 import styled from 'styled-components/native';
+import { withPlayer } from '../Hoc/withPlayer';
 
-export const Contact = () => {
+export const Contact = () => withPlayer(() => {
+
   return (
     <ScrollView>
       <ViewContainer>
@@ -13,7 +15,7 @@ export const Contact = () => {
       </ViewContainer>
     </ScrollView >
   )
-}
+})
 
 const ViewContainer = styled.View`
   align-items: center;

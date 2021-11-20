@@ -7,9 +7,10 @@ import {
   ScrollView,
   View
 } from 'react-native';
+import { withPlayer } from '../Hoc/withPlayer';
 
 
-export const About = () => {
+export const About = () => withPlayer(() => {
 
   const [data, setData] = useState([]);
 
@@ -56,7 +57,7 @@ export const About = () => {
       }
     </ScrollView>
   )
-}
+})
 
 const ViewContainer = styled.View`
   margin: 20px;

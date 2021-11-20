@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { colors, constants } from '../Constants';
+import { withPlayer } from '../Hoc/withPlayer';
 
-export const Schedule = () => {
+export const Schedule = () => withPlayer(() => {
 
   const [news, setNews] = useState([]);
   let text = '';
@@ -35,7 +36,7 @@ export const Schedule = () => {
       ))}
     </ScrollView>
   )
-}
+})
 
 const Container = styled.View`
   margin: 10px 10px 0 10px;
