@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, Text } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { State, usePlaybackState, Event, useTrackPlayerEvents } from 'react-native-track-player';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import styled from 'styled-components/native';
 
@@ -10,6 +10,17 @@ import { colors } from '../../Constants';
 export default (props: any) => {
 
   const [isPlaying, setisPlaying] = useState(true);
+  const playBackState = usePlaybackState();
+
+  useTrackPlayerEvents([Event.PlaybackState], event => {
+    if (playBackState === 2) {
+      setisPlaying(true)
+    }else {
+      if(playBackState === 3){
+        setisPlaying(false);
+      }
+    }
+  });
 
   return (
     <Player>
@@ -57,3 +68,7 @@ const PlayerButton = styled.View`
   padding: 7px;
   border-radius: 40px;
 `;
+function seTrackPlayerEvents(arg0: Event[], arg1: (event: any) => Promise<void>) {
+  throw new Error('Function not implemented.');
+}
+
