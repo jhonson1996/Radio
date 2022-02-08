@@ -1,4 +1,4 @@
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
-import icoMoonConfig from '../../../selection.json';
-export default createIconSetFromIcoMoon(icoMoonConfig,'../../../assets/fonts/IconosRadio.ttf');
+import fontelloConfig from './config.json';
+export default createIconSetFromFontello(fontelloConfig);

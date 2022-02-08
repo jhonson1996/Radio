@@ -1,6 +1,6 @@
 import React from 'react';
-import { Alert, Text } from 'react-native'
-import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
+import { Text } from 'react-native'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { colors } from '../Constants';
 import Menu from '../Components/Menu/Menu';
@@ -9,6 +9,7 @@ import { Schedule } from '../Screens/Schedule';
 import { RadioShow } from '../Screens/RadioShow';
 import { About } from '../Screens/About';
 import { Contact } from '../Screens/Contact';
+import IconRadio from '../Components/CustomIcon/CustomIcon';
 
 const Drawer = createDrawerNavigator();
 const ScreenOptions = {
@@ -51,8 +52,8 @@ export default () => (
         headerShown: false,
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Noticias'}</Text>,
         drawerIcon: ({ color, size }) => (
-          <Icon
-            name="home" size={26} color={color}
+          <IconRadio
+            name="news" size={26} color={color}
             style={{ marginLeft: 5 }}
           />
         )
@@ -64,7 +65,7 @@ export default () => (
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Programación'}</Text>,
         drawerIcon: ({ color }) => (
-          <Icon
+          <IconRadio
             name="radio" size={26} color={color}
             style={{ marginLeft: 5 }}
           />
@@ -77,8 +78,8 @@ export default () => (
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Sobre Nosotros'}</Text>,
         drawerIcon: ({ color }) => (
-          <Icon
-            name="emisora" size={26} color={color}
+          <IconRadio
+            name="about" size={26} color={color}
             style={{ marginLeft: 5 }}
           />
         )
@@ -90,7 +91,7 @@ export default () => (
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'RadioShow'}</Text>,
         drawerIcon: ({ color }) => (
-          <Icon
+          <IconRadio
             name="video" size={26} color={color}
             style={{ marginLeft: 5 }}
           />
@@ -103,8 +104,8 @@ export default () => (
       options={{
         drawerLabel: ({ color }) => <Text style={[{ color }, ScreenOptions.drawerLabelStyle]}>{'Contacto'}</Text>,
         drawerIcon: ({ color }) => (
-          <Icon
-            name="info" size={26} color={color}
+          <IconRadio
+            name="comment" size={26} color={color}
             style={{ marginLeft: 5 }}
           />
         )
